@@ -8,8 +8,8 @@ defineProps<{
 
 <template>
   <li class="py-5 f-s-c">
-    <span class="w-20 text-center text-2xl font-semibold inline-block  text-gray-700">{{ item.points }}</span>
-    <div class=" space-y-1">
+    <span class="w-16 lg:w-20 text-center text-2xl font-semibold inline-block  text-gray-700 ">{{ item.points }}</span>
+    <div class=" space-y-1 flex-1">
       <span class=" hover:text-nx">
         <template v-if="isAbsolute(item.url)">
           <a

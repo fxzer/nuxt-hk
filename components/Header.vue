@@ -17,7 +17,7 @@
           {{ list.title }}
         </NuxtLink>
       </div>
-      <a href="https://github.com/nuxt/hackernews" target="_blank" rel="noopener banner">
+      <a href="https://github.com/fxzer/nuxt-hk" target="_blank" rel="noopener banner">
         <Github class="wh-7 lg:wh-8" />
       </a>
     </nav>
