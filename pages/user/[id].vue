@@ -10,7 +10,7 @@ useHead({
     ? 'Loading'
     : user.value
       ? user.value.id
-      : 'User not found'
+      : 'User not found',
 })
 </script>
 
@@ -33,8 +33,8 @@ useHead({
         />
       </ul>
       <p class="links">
-        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id">submissions</a> |
-        <a :href="'https://news.ycombinator.com/threads?id=' + user.id">comments</a>
+        <a :href="`https://news.ycombinator.com/submitted?id=${user.id}`">submissions</a> |
+        <a :href="`https://news.ycombinator.com/threads?id=${user.id}`">comments</a>
       </p>
     </template>
     <template v-else>
@@ -42,34 +42,3 @@ useHead({
     </template>
   </div>
 </template>
-
-<style lang="postcss">
-.user-view {
-  background-color: #fff;
-  box-sizing: border-box;
-  padding: 2em 3em;
-
-  & h1 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-
-  .meta {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .label {
-    display: inline-block;
-    min-width: 4em;
-  }
-
-  .about {
-    margin: 1em 0;
-  }
-
-  .links a {
-    text-decoration: underline;
-  }
-}
-</style>

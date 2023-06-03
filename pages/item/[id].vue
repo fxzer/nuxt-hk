@@ -7,45 +7,48 @@ const { data: item } = toRefs(resultItem)
 const { data: comments, loading: commentsLoading } = toRefs(resultComments)
 
 useHead({
-  title: item.value?.title
+  title: item.value?.title,
 })
 </script>
 
 <template>
-  <div class="item-view view">
+  <div class=" lg:w-200 mx-auto bg-white  my-4">
     <div
       v-if="!item?.url"
       class="item-view-header"
     >
-      <h1>Page not found</h1>
+      <h1 class="text-4xl text-red-500 text-center">
+        Page not found
+      </h1>
     </div>
     <template v-else>
-      <div class="item-view-header">
+      <div class="mb-4 sd-6-1  p-6 ">
         <template v-if="isAbsolute(item.url)">
           <a
             :href="item.url"
             target="_blank"
             rel="noopener"
-          ><h1 v-text="item.title" /></a>
-          <span class="host"> ({{ host(item.url) }})</span>
+          ><h1 class="inline  text-2xl font-semibold" v-text="item.title" /><span class="text-gray-600 hover:text-nx"> ({{ host(item.url) }})</span></a>
         </template>
         <template v-else>
-          <h1 v-text="item.title" />
+          <h1 class="text-2xl font-semibold" v-text="item.title" />
         </template>
-        <p class="meta">
-          {{ item.points }} points | by
-          <NuxtLink :to="'/user/' + item.user">
-            {{ item.user }}
-          </NuxtLink>
-          {{ timeAgo(+item.time) }} ago
+        <p class="mt-2 space-x-5 text-gray-600">
+          <span> {{ item.points }} points</span>
+          <span>
+            by <NuxtLink :to="`/user/${item.user}`">
+              {{ item.user }}
+            </NuxtLink>
+          </span>
+          <span> {{ timeAgo(+item.time) }} ago</span>
         </p>
       </div>
-      <div class="item-view-comments">
+      <div class="sd-6-1  p-6">
         <LoadingWrapper :loading="commentsLoading">
-          <p class="item-view-comments-header">
-            {{ comments ? comments.length + ' comments' : 'No comments yet.' }}
+          <p class="">
+            {{ comments ? `${comments.length} comments` : 'No comments yet.' }}
           </p>
-          <ul class="comment-children">
+          <ul class=" divide-y-1 divide-amber-200">
             <PostComment
               v-for="comment in comments"
               :key="comment.id"
@@ -57,61 +60,3 @@ useHead({
     </template>
   </div>
 </template>
-
-<style lang="postcss">
-.item-view-header {
-  background-color: #fff;
-  padding: 1.8em 2em 1em;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-
-  & h1 {
-    display: inline;
-    font-size: 1.5em;
-    margin: 0;
-    margin-right: 0.5em;
-  }
-
-  .host, .meta, .meta a {
-    color: #595959;
-  }
-  .meta a:hover {
-    color: #00C48D;
-  }
-
-  .meta a {
-    text-decoration: underline;
-  }
-}
-
-.item-view-comments {
-  background-color: #fff;
-  margin-top: 10px;
-  padding: 0 2em 0.5em;
-}
-
-.item-view-comments-header {
-  margin: 0;
-  font-size: 1.1em;
-  padding: 1em 0;
-  position: relative;
-
-  .spinner {
-    display: inline-block;
-    margin: -15px 0;
-  }
-}
-
-.comment-children {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-@media (max-width: 600px) {
-  .item-view-header {
-    & h1 {
-      font-size: 1.25em;
-    }
-  }
-}
-</style>
