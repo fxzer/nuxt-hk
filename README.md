@@ -1,10 +1,8 @@
-# Nuxt 3 Minimal Starter
+# Nuxt3 + UnoCSS 重构的 [hackernews](https://github.com/nuxt/hackernews) 博客网站
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 启动
 
-## Setup
-
-Make sure to install the dependencies:
+安装依赖:
 
 ```bash
 # yarn
@@ -17,26 +15,26 @@ npm install
 pnpm install
 ```
 
-## Development Server
+## 开发服务
 
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
 
 ```bash
-npm run build
+pnpm dev
+```
+访问 `http://localhost:9999`
+
+## 生产
+
+
+打包:
+```bash
+pnpm build
+pnpm generate
 ```
 
-Locally preview production build:
+预览:
 
 ```bash
-npm run preview
+pnpm preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
